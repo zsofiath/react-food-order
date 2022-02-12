@@ -8,7 +8,7 @@ const Checkout = (props) => {
     name: true,
     street: true,
     city: true,
-    postal: true
+    postal: true,
   });
 
   const nameInputRef = useRef();
@@ -33,16 +33,21 @@ const Checkout = (props) => {
       name: enteredNameIsValid,
       street: enteredStreetIsValid,
       city: enteredCityIsValid,
-      postal: enteredPostalIsValid
-    })
+      postal: enteredPostalIsValid,
+    });
     const formIsValid =
       enteredNameIsValid &&
       enteredStreetIsValid &&
       enteredCityIsValid &&
       enteredPostalIsValid;
-
-    if (!formIsValid) {
-
+      
+    if (formIsValid) {
+      props.onConfirm({
+        name: enteredName,
+        street: enteredStreet,
+        city: enteredCity,
+        postal: enteredPostal,
+      });
     }
   };
 
@@ -51,22 +56,22 @@ const Checkout = (props) => {
       <div className={classes.control}>
         <label htmlFor="name">Your Name</label>
         <input type="text" ref={nameInputRef} id="name" />
-        { !formInputValidity.name && <p>Invalid</p>}
+        {!formInputValidity.name && <p>Invalid</p>}
       </div>
       <div className={classes.control}>
         <label htmlFor="street">Street</label>
         <input type="text" ref={streetInputRef} id="street" />
-        { !formInputValidity.street && <p>Invalid</p>}
+        {!formInputValidity.street && <p>Invalid</p>}
       </div>
       <div className={classes.control}>
         <label htmlFor="postal">Postal Code</label>
         <input type="text" ref={postalInputRef} id="postal" />
-        { !formInputValidity.city && <p>Invalid</p>}
+        {!formInputValidity.city && <p>Invalid</p>}
       </div>
       <div className={classes.control}>
         <label htmlFor="city">City</label>
         <input type="text" ref={cityInputRef} id="city" />
-        { !formInputValidity.postal && <p>Invalid</p>}
+        {!formInputValidity.postal && <p>Invalid</p>}
       </div>
       <div className={classes.actions}>
         <button type="button" onClick={props.onCancel}>
