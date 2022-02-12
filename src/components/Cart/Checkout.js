@@ -1,8 +1,6 @@
-import { useRef, useState } from "react";
 import useValiation from "../UI/utilities/useValidation";
 import classes from "./Checkout.module.css";
 const isNotEmpty = (value) => value.trim() !== "";
-const isEmpty = (value) => value.trim() === "";
 const isFiveChars = (value) => value.trim().length === 5;
 
 const Checkout = (props) => {
